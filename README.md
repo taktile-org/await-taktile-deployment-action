@@ -48,3 +48,7 @@ jobs:
         run:
           run: source update_policy.sh
 ```
+
+# License
+
+The scripts and documentation in this project are released under the [Apache 2.0](LICENSE) license.

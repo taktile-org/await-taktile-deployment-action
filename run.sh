@@ -16,11 +16,9 @@ echo "Public docs exists"
 
 while tktl get deployments -c $COMMIT_SHA -f -O json | jq '.[].status' | grep -v -q 'running'; do
     sleep 10
-    echo "Waiting for deployment to become live ..."
+    echo "Waiting for deployment status to be running ..."
 done
 
 echo "The status is now ..."
 echo $(tktl get deployments -c $COMMIT_SHA -f -O json | jq '.[].status' )
 echo "Deployment is live!"
-
-echo "::set-output name=new-git-hash::$GITHUB_SHA"
