@@ -13,7 +13,7 @@ This action will wait until the commit hash that kicked it off has been turned i
 ### GitHub Action Step
 
 ```
-uses: ./.github/actions
+uses: taktile-org/await-taktile-deployment-action@VERSION
 with:
   TKTL_API_KEY: ${{ secrets.TKTL_API_KEY }}
 ```
