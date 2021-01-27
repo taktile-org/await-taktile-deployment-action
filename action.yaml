@@ -1,0 +1,18 @@
+name: 'Await Taktile Deployment'
+author: Taktile
+description: 'Wait until your new deployment is live on Taktile'
+inputs:
+  TKTL_API_KEY:
+    description: 'Your Taktile API key'
+    required: true
+outputs:
+  new-git-hash:
+    description: 'Git hash of the new commit which is live once this action completes'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.TKTL_API_KEY }}
+branding:
+  icon: 'rotate-ccw'
+  color: 'green'
