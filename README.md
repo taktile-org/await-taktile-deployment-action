@@ -1,8 +1,6 @@
 # Await Taktile Deployment Action
 
-This action will wait until the commit hash that kicked it off has been turned into a running Taktile deployment. Use this action to block the next step in your GitHub Action job until the new deployment is live.
-
-For example, this may be useful if you want to update the policy you layer on top of the model's predictions. You could use this action to wait until the new model is live and only then send an update request to the backend where you manage the policy you apply on top of predictions.
+This action will wait until the commit hash that kicked it off has been turned into a running Taktile deployment. Use this action to block the next step in your GitHub Action job until that new deployment is live.
 
 ## Inputs
 
@@ -10,7 +8,7 @@ For example, this may be useful if you want to update the policy you layer on to
 
 **Required** Your Taktile API key, required to log into Taktile using the CLI. Should be stored in secrets, not the workflow yaml directly.
 
-## Example usage
+## Example
 
 ### GitHub Action Step
 
@@ -20,18 +18,22 @@ with:
   TKTL_API_KEY: ${{ secrets.TKTL_API_KEY }}
 ```
 
+### Movitation
+
+This action could be useful if you apply a policy on top of the model's predictions and want to update that policy when you update your model. You would use this action to wait until the new model is live. After that you could send an update request to the backend where you manage the policy.
+
 ### Complete GitHub Action
 
 ```
 name: Check Deployment Status
 
 on:
-push
+  push
 
 jobs:
-check-deployment:
-name: Check Deployment Status
-runs-on: ubuntu-latest
+  check-deployment:
+    name: Check Deployment Status
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -42,4 +44,7 @@ runs-on: ubuntu-latest
         uses: taktile-org/await-taktile-deployment-action@VERSION
         with:
           TKTL_API_KEY: ${{ secrets.TKTL_API_KEY }}
+      - name: Send update to policy backend
+        run:
+          run: source update_policy.sh
 ```
