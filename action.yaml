@@ -5,9 +5,6 @@ inputs:
   TKTL_API_KEY:
     description: 'Your Taktile API key'
     required: true
-outputs:
-  new-git-hash:
-    description: 'Git hash of the new commit which is live once this action completes'
 runs:
   using: 'docker'
   image: 'Dockerfile'
