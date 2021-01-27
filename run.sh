@@ -8,14 +8,14 @@ COMMIT_SHA=$GITHUB_SHA
 tktl login $TKTL_API_KEY
 
 until tktl get deployments -c $COMMIT_SHA ; do
-    sleep 20
+    sleep 10
     echo 'Waiting for public docs URL ...'
 done
 
 echo "Public docs exists"
 
 while tktl get deployments -c $COMMIT_SHA -f -O json | jq '.[].status' | grep -v -q 'running'; do
-    sleep 10
+    sleep 2
     echo "Waiting for deployment status to be running ..."
 done
 
