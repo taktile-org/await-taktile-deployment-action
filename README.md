@@ -45,8 +45,7 @@ jobs:
         with:
           TKTL_API_KEY: ${{ secrets.TKTL_API_KEY }}
       - name: Send update to policy backend
-        run:
-          run: source update_policy.sh
+        run: source update_policy.sh
 ```
 
 # License
