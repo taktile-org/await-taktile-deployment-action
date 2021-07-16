@@ -9,9 +9,9 @@ COMMIT_SHA=$GITHUB_SHA
 # Check
 tktl login "$TKTL_API_KEY"
 
-while tktl get deployments -c "$COMMIT_SHA" -f -O json | jq '.[].status' | grep -v -q 'running'; do
+while tktl get deployments -c "$COMMIT_SHA" -f -O json | jq '.[].status' | grep -vE -q 'running|profiling'; do
     sleep 2
-    echo 'Waiting for deployment status to be running ...'
+    echo 'Waiting for deployment to complete (status profiling or running) ...'
 done
 
 echo 'The status is now ...'
