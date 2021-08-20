@@ -6,7 +6,7 @@ set -euo pipefail
 TKTL_API_KEY=$INPUT_TKTL_API_KEY
 # GITHUB_SHA is the commit hash of the running action and set by github. 
 # DEPLOY_SHA can be set in the github action to watch for a different deployment
-COMMIT_SHA="${DEPLOY_SHA:-$GITHUB_SHA}"
+COMMIT_SHA="${INPUT_DEPLOY_SHA:-$GITHUB_SHA}"
 
 # Check
 tktl login "$TKTL_API_KEY"

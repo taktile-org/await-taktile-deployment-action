@@ -5,11 +5,16 @@ inputs:
   TKTL_API_KEY:
     description: 'Your Taktile API key'
     required: true
+  DEPLOY_SHA:
+    description: 'Long commit hash of the deployment. If not set GITHUB_SHA is used'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.TKTL_API_KEY }}
+    - ${{ inputs.DEPLOY_SHA }}
 branding:
   icon: 'rotate-ccw'
   color: 'green'
+
